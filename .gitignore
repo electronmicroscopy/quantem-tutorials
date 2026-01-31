@@ -1,5 +1,6 @@
 .ipynb_checkpoints
 *.zip
+*.npy
 .DS_Store
-
+dvlp_notebooks
 notebooks/runs/vols/
