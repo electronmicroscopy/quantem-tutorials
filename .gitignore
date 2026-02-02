@@ -3,4 +3,4 @@
 # *.npy
 .DS_Store
 dvlp_notebooks
-tutorials/tomography/Notebooks/logs/
+outputs/
