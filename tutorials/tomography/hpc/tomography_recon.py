@@ -41,7 +41,7 @@ obj_inr = ObjectINR(
 # Define a logger
 logger = LoggerTomography(
     log_dir = "../../../outputs/tomography/tutorial_02_scripts/",
-    run_prefix = "inr_tomography_warmup_cosineanneal",
+    run_prefix = "inr_tomography_warmup_cosineanneal_hpc",
     run_suffix = "",
     log_images_every = 2,
 )
