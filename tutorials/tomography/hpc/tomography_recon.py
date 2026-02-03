@@ -58,7 +58,7 @@ tomo_inr = Tomography(
 optimizer_params = {
     "object": {
         "type": "adam",
-        "lr": 1e-4,
+        "lr": 5e-4,
     },
 }
 
@@ -122,7 +122,7 @@ scheduler_params = {
 # Reconstruct
 
 tomo_inr.reconstruct(
-    num_iter = 20,
+    num_iter = 100,
     optimizer_params = optimizer_params,
     scheduler_params = scheduler_params,
     num_samples_per_ray = 100,
