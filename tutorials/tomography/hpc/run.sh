@@ -3,9 +3,9 @@
 export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 export MASTER_PORT=29500
 export OMP_NUM_THREADS=8
+ml nccl/2.24.3
 ml conda
 ml nccl
-ml gpu
 conda activate /global/common/software/mxxxx/'INSERT USER HERE'/conda/quantem
 
 
