@@ -5,7 +5,7 @@ from quantem.tomography.logger_tomography import LoggerTomography
 from quantem.core.ml.inr import HSiren
 import numpy as np
 
-from quantem.tomography.utils import fourier_cropping
+from quantem.core.utils.tomography_utils import fourier_binning
 from quantem.core.visualization import show_2d
 import torch
 
@@ -22,7 +22,7 @@ Example script to run the tomography reconstruction on HPC (NERSC).
 tilt_series = np.load('../../../data/tilt_series.npy')
 tilt_angles = np.load('../../../data/tilt_angles.npy')
 
-tilt_series = np.array([fourier_cropping(img, (100, 100)) for img in tilt_series]) # Cropped down to 100x100 for speed
+tilt_series = np.array([fourier_binning(img, (100, 100)) for img in tilt_series]) # Cropped down to 100x100 for speed
 
 dset = TomographyINRDataset(
     tilt_stack = tilt_series,
