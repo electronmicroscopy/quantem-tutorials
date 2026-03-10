@@ -1,8 +1,9 @@
 from quantem.tomography.tomography import TomographyConventional, Tomography
-from quantem.tomography.dataset_models import TomographyPixDataset, TomographyINRDataset, TomographyINRPretrainDataset
-from quantem.tomography.object_models import ObjectINR, ObjectPixelated
+from quantem.tomography.dataset_models import TomographyPixDataset, TomographyINRDataset, TomographyINRPretrainDataset, DatasetConstraintParams
+from quantem.tomography.object_models import ObjectINR, ObjectPixelated, ObjConstraintParams
 from quantem.tomography.logger_tomography import LoggerTomography
 from quantem.core.ml.inr import HSiren
+from quantem.core.ml.optimizer_mixin import SchedulerParams, OptimizerParams
 import numpy as np
 
 from quantem.core.utils.tomography_utils import fourier_binning
@@ -24,7 +25,7 @@ tilt_angles = np.load('../../../data/tilt_angles_1_deg_tilt_axis.npy')
 
 tilt_series = np.array([fourier_binning(img, (100, 100)) for img in tilt_series]) # Cropped down to 100x100 for speed
 
-dset = TomographyINRDataset(
+dset = TomographyINRDataset.from_data(
     tilt_stack = tilt_series,
     tilt_angles = tilt_angles,
 )
@@ -33,7 +34,7 @@ dset = TomographyINRDataset(
 model = HSiren(alpha = 1, winner_initialization = True)
 
 # Initialize INR Object
-obj_inr = ObjectINR(
+obj_inr = ObjectINR.from_model(
     shape = (100, 100, 100),
     model = model,
 )
@@ -47,33 +48,68 @@ logger = LoggerTomography(
 )
 
 # Initialize INR-Based Tomography Object
-tomo_inr = Tomography(
+tomo_inr = Tomography.from_models(
     dset = dset,
     obj_model = obj_inr,
     logger = logger,
+    verbose = False,
 )
 
 # Define optimizer and scheduler parameters - only optimizing the object.
 
 optimizer_params = {
-    "object": {
-        "type": "adam",
-        "lr": 5e-4,
-    },
+    "object": OptimizerParams.Adam(
+        lr = 5e-4,
+    ),
+    "pose": OptimizerParams.Adam(
+        lr = 1e-2,
+    )
 }
+"""
+All available scheduler params are in `core/ml/optimizer_mixin.py`
+
+Scheduler types: 'cyclic', 'plateau', 'exp', 'gamma', 'linear', 'cosine_annealing'
+Keyword arguments follow PyTorch scheduler documentation.
+"""
 
 scheduler_params = {
-    "object": {
-        "type": "linear",
-    },
+    "object": SchedulerParams.Plateau(
+        mode = "min",
+        factor = 0.5,
+        patience = 10,
+        threshold = 1e-3,
+        min_lr = 1e-7,
+    ),
+    "pose": SchedulerParams.Plateau(
+        mode = "min",
+        factor = 0.5,
+        patience = 10,
+        threshold = 1e-3,
+        min_lr = 1e-7,
+    )
 }
 
-# Define constraints
+"""
+Defining the constraints that we want to apply to the object and dataset. In this case
+adding a total-variational loss, enforcing positivity, and a shrinkage constraint.
 
-constraints = {
-    "tv_vol": 5e-7,
-    "positivity": True,
-}
+For the dataset we can add a 1-D total-variational loss to the shifts and z-shifts.
+However this may not be necessary depending on the dataset.
+"""
+
+obj_constraints = ObjConstraintParams.ObjINRConstraints(
+    positivity = True,
+    sparsity = 1e-6,
+    tv_vol = 1e-4,
+)
+
+## Dataset constraints not necessarily needed.
+
+dataset_constraints = DatasetConstraintParams.BaseTomographyDatasetConstraints(
+    tv_shifts = 1e-6, # 1-D regularizer for the shift optimization
+    tv_zs = 1e-6, # 1-D regularizer for the z-shift optimization.
+)
+
 
 # Warmup Schedule for 10 epochs
 
@@ -94,7 +130,8 @@ tomo_inr.reconstruct(
     num_iter = 10,
     optimizer_params = optimizer_params,
     scheduler_params = scheduler_params,
-    constraints = constraints,
+    obj_constraints = obj_constraints,
+    dset_constraints = dataset_constraints,
     num_samples_per_ray = num_samples_per_ray,
     num_workers = 32,
 )
