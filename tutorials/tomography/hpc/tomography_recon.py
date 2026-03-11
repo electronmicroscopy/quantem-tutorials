@@ -59,7 +59,7 @@ tomo_inr = Tomography.from_models(
 
 optimizer_params = {
     "object": OptimizerParams.Adam(
-        lr = 5e-4,
+        lr = 1e-4,
     ),
     "pose": OptimizerParams.Adam(
         lr = 1e-2,
