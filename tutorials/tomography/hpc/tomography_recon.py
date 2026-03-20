@@ -61,9 +61,9 @@ optimizer_params = {
     "object": OptimizerParams.Adam(
         lr = 1e-4,
     ),
-    "pose": OptimizerParams.Adam(
-        lr = 1e-2,
-    )
+    # "pose": OptimizerParams.Adam(
+    #     lr = 1e-2,
+    # )
 }
 """
 All available scheduler params are in `core/ml/optimizer_mixin.py`
@@ -80,13 +80,13 @@ scheduler_params = {
         threshold = 1e-3,
         min_lr = 1e-7,
     ),
-    "pose": SchedulerParams.Plateau(
-        mode = "min",
-        factor = 0.5,
-        patience = 10,
-        threshold = 1e-3,
-        min_lr = 1e-7,
-    )
+    # "pose": SchedulerParams.Plateau(
+    #     mode = "min",
+    #     factor = 0.5,
+    #     patience = 10,
+    #     threshold = 1e-3,
+    #     min_lr = 1e-7,
+    # )
 }
 
 """
@@ -128,6 +128,7 @@ num_samples_per_ray = [
 
 tomo_inr.reconstruct(
     num_iter = 10,
+    batch_size = 256,
     optimizer_params = optimizer_params,
     scheduler_params = scheduler_params,
     obj_constraints = obj_constraints,
@@ -135,7 +136,6 @@ tomo_inr.reconstruct(
     num_samples_per_ray = num_samples_per_ray,
     num_workers = 32,
 )
-
 
 # Initialzie pose optimizer 
 
