@@ -10,6 +10,9 @@ from quantem.core.utils.tomography_utils import fourier_binning
 from quantem.core.visualization import show_2d
 import torch
 
+import warnings
+warnings.filterwarnings("ignore", message="Attempting to run cuBLAS, but there was no current CUDA context") # Ignoring CuBLAS errors for now since it fixes it self.
+
 """
 Example script to run the tomography reconstruction on HPC (NERSC).
 
