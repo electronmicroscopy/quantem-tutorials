@@ -166,3 +166,4 @@ tomo_inr.reconstruct(
 )
 
     
+torch.distributed.destroy_process_group()
