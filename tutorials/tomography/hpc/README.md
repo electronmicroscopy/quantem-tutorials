@@ -10,11 +10,7 @@ Included in this folder are two files:
 
 | System | Python Ver. | PyTorch Ver. | Status |
 |--------|-------------|--------------|--------|
-| NERSC Perlmutter | >3.10 | 2.10.0 | ✅ |
-| NERSC Perlmutter | >3.10 | 2.9.0 | ❓ |
-| NERSC Perlmutter | >3.10 | 2.8.0 | ❓ |
-| NERSC Perlmutter | >3.10 | 2.7.0 | ❓ |
-| NERSC Perlmutter | >3.10 | 2.6.0 | ❓ |
+| NERSC Perlmutter | >=3.10 | >=2.10.0 | ✅ |
 
 # Installing Conda Environments 
 
