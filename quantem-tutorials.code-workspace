@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../quantem-tutorials",
+			"path": "../quantem"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"python.defaultInterpreterPath": "../quantem/.venv/bin/python"
+}
