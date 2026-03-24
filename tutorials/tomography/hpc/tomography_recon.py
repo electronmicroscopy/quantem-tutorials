@@ -1,13 +1,12 @@
-from quantem.tomography.tomography import TomographyConventional, Tomography
-from quantem.tomography.dataset_models import TomographyPixDataset, TomographyINRDataset, TomographyINRPretrainDataset, DatasetConstraintParams
-from quantem.tomography.object_models import ObjectINR, ObjectPixelated, ObjConstraintParams
+from quantem.tomography.tomography import Tomography
+from quantem.tomography.dataset_models import TomographyINRDataset, DatasetConstraintParams
+from quantem.tomography.object_models import ObjectINR, ObjConstraintParams
 from quantem.tomography.logger_tomography import LoggerTomography
 from quantem.core.ml.inr import HSiren
 from quantem.core.ml.optimizer_mixin import SchedulerParams, OptimizerParams
 import numpy as np
 
 from quantem.core.utils.tomography_utils import fourier_binning
-from quantem.core.visualization import show_2d
 import torch
 
 """
@@ -47,6 +46,8 @@ if __name__ == "__main__":
         run_suffix = "",
         log_images_every = 2,
     )
+
+    print(f"Logs and Outputs will be saved at {logger.log_dir}")
 
     # Initialize INR-Based Tomography Object
     tomo_inr = Tomography.from_models(

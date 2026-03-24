@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH -A mxxxx
 #SBATCH -C gpu
-#SBATCH -q regular
-#SBATCH -t 4:00:00
+#SBATCH -q debug
+#SBATCH -t 00:30:00
 #SBATCH -N 4
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 128
@@ -14,7 +14,7 @@
 export MASTER_ADDR=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
 export MASTER_PORT=29500
 export OMP_NUM_THREADS=8
-ml nccl/2.24.3
+ml nccl/2.29.2-cu13
 ml conda
 ml nccl
 conda activate /global/common/software/mxxxx/'INSERT USER HERE'/conda/quantem
