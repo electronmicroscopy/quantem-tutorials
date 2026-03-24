@@ -6,6 +6,8 @@ Included in this folder are two files:
 - `run_job.sh`: A sample job script for submitting to the Slurm scheduler.
 - `tomography_recon.py`: Contains the full reconstruction script; similar to `Scripts/tomography_02_full.py`
 
+**Note: The first iteration of the reconstruction takes some time to initialize due to `multiprocessing_context="spawn"` which is a slightly slower way to initialize the multiprocessing context but is more stable across different systems.**
+
 # Compatibility Table
 
 | System | Python Ver. | PyTorch Ver. | Status |
