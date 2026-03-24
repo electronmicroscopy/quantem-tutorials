@@ -12,7 +12,7 @@ echo "=== Loaded modules ==="
 module list
 
 echo "=== Activating conda env ==="
-conda activate /global/common/software/m5020/cedlim/conda/quantem-test
+conda activate /global/common/software/mxxxx/user/conda/quantem  # CHANGE: Replace with the path to your conda environment
 echo "=== Active conda env ==="
 echo "CONDA_DEFAULT_ENV: $CONDA_DEFAULT_ENV"
 echo "CONDA_PREFIX: $CONDA_PREFIX"
