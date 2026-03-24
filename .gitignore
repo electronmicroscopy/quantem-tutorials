@@ -5,4 +5,5 @@
 dvlp_notebooks
 outputs/
 
-quantem-tutorials.code-workspace
+# GIT ignore .code-workspace
+*.code-workspace
