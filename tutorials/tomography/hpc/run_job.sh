@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -A mxxxx  # CHANGE: Replace with your NERSC project ID
 #SBATCH -C gpu
-#SBATCH -q debug
-#SBATCH -t 00:30:00
-#SBATCH -N 4
+#SBATCH -q debug # CHANGE: Replace with 'regular' for longer jobs
+#SBATCH -t 00:30:00 # CHANGE: Adjust walltime as needed
+#SBATCH -N 4 # CHANGE: Adjust number of nodes as needed
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 128
 #SBATCH --gpus-per-node=4
