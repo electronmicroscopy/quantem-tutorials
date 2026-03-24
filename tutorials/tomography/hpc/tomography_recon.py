@@ -47,7 +47,6 @@ if __name__ == "__main__":
         log_images_every = 2,
     )
 
-    print(f"Logs and Outputs will be saved at {logger.log_dir}")
 
     # Initialize INR-Based Tomography Object
     tomo_inr = Tomography.from_models(
@@ -56,6 +55,9 @@ if __name__ == "__main__":
         logger = logger,
         verbose = False,
     )
+
+    if tomo_inr.global_rank == 0:
+        print(f"Logs and Outputs will be saved at {logger.log_dir}")
 
     # Define optimizer and scheduler parameters - only optimizing the object.
 
