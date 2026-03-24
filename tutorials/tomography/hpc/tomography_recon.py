@@ -169,5 +169,5 @@ if __name__ == "__main__":
         num_samples_per_ray = 100,
     )
 
-        
+    # Clean up distributed training, good practice to put this at the end of the script.
     torch.distributed.destroy_process_group()
