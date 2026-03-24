@@ -5,6 +5,7 @@ Included in this folder are two files:
 - `run.sh`: Initializes all necessary parameters for `torch` to see all gpus across nodes using `torchrun`.
 - `run_job.sh`: A sample job script for submitting to the Slurm scheduler.
 - `tomography_recon.py`: Contains the full reconstruction script; similar to `Scripts/tomography_02_full.py`
+- `tensorboard_nersc.ipynb`: A Jupyter notebook for visualizing tensorboard logs on NERSC.
 
 # Compatibility Table
 
@@ -75,3 +76,7 @@ Once the job is allocated, you can just run `sh run.sh` or `batch run.sh`.
 Alternatively, you can submit a job using `sbatch run_job.sh`. Usual parameters can be adjusted within the file.
 
 These files should work on these tutorial files, but will potentially require adjustments when using your own data.
+
+## Tensorboard Visualization
+
+See `tensorboard_nersc.ipynb` for an example of how to visualize tensorboard logs on NERSC. For different HPC systems, you may need to use a different method to visualize tensorboard logs via port-forwarding.
