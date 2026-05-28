@@ -1,6 +1,6 @@
 # HPC (NERSC) Ptychography Reconstructions
 
-This folder contains scripts for running multi-node, multi-GPU ptychography reconstructions on NERSC's Perlmutter supercomputer. Single-node multi-GPU can be done directly in a notebook — see `ptycho_iter_07_multi_gpu.ipynb`.
+This folder contains scripts for running multi-node, multi-GPU ptychography reconstructions on NERSC's Perlmutter supercomputer. Single-node multi-GPU can be done directly in a notebook — see `ptycho_iter_08_multi_gpu.ipynb`.
 
 **Files:**
 
@@ -53,7 +53,7 @@ Please refer to the [NERSC Python docs](https://docs.nersc.gov/development/langu
 
 ### 1. Preprocess on a workstation or login node
 
-Run `ptycho_iter_07_multi_gpu.ipynb` through the preprocessing cell (or optionally a short single-GPU trial), then save:
+Run `ptycho_iter_08_multi_gpu.ipynb` through the preprocessing cell (or optionally a short single-GPU trial), then save:
 
 ```python
 ptycho.save("ducky_preprocessed.zip")

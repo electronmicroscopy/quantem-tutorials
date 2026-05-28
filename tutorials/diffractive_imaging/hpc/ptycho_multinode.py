@@ -14,7 +14,7 @@ torchrun sets RANK, LOCAL_RANK, and WORLD_SIZE automatically.
 quantEM's reconstruct() detects these and uses the distributed code path.
 
 Workflow:
-  1. Run ptycho_iter_07_multi_gpu.ipynb on a workstation or login node to
+  1. Run ptycho_iter_08_multi_gpu.ipynb on a workstation or login node to
      preprocess and optionally do a short trial reconstruction.
   2. Save: ptycho.save("ptycho_preprocessed.zip")
   3. Transfer the zip and this script to NERSC (or your HPC cluster).

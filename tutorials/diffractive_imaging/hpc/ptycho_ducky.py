@@ -4,7 +4,7 @@ Multi-node multi-GPU ptychography reconstruction of the ducky dataset.
 Prereqs
 -------
 Preprocess the ducky dataset from a notebook or login node first
-(see ptycho_iter_07_multi_gpu.ipynb for the full workflow):
+(see ptycho_iter_08_multi_gpu.ipynb for the full workflow):
 
     from pathlib import Path
     from quantem.core.io import read_4dstem
