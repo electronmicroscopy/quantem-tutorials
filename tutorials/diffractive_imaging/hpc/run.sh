@@ -11,13 +11,14 @@
 #
 # Configuration — edit these:
 WORKDIR=$SCRATCH/ptycho_multinode              # CHANGE: working directory on scratch
-CONDA_ENV=/global/common/software/mxxxx/user/conda/quantem  # CHANGE: path to your conda env
-PTYCHO_INPUT=$WORKDIR/ducky_preprocessed.zip
-PTYCHO_OUTPUT=$WORKDIR/ducky_result.zip
-PTYCHO_ITERS=200
+SCRIPTDIR=$HOME/quantem-tutorials/tutorials/diffractive_imaging/hpc
+CONDA_ENV=/global/common/software/<mxxxx>/<user>/conda/quantem  # CHANGE: path to your conda env
+PTYCHO_INPUT=$WORKDIR/ducky_251105_20mrad_500A-df_4A-step_5e+04-dose_clean.zip
+PTYCHO_OUTPUT=$WORKDIR/ducky_hpc_result.zip
+PTYCHO_ITERS=2000
 PTYCHO_LR_OBJ=5e-2
 PTYCHO_LR_PROBE=5e-2
-# PTYCHO_BATCH_SIZE=256                        # uncomment to set explicit batch size per rank
+PTYCHO_BATCH_SIZE=256
 
 export MASTER_ADDR=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
 export MASTER_PORT=29500
@@ -54,4 +55,4 @@ srun -l torchrun \
     --nproc-per-node="$SLURM_GPUS_PER_NODE" \
     --rdzv-backend=c10d \
     --rdzv-endpoint="$MASTER_ADDR:$MASTER_PORT" \
-    "$WORKDIR/ptycho_ducky.py"
+    "$SCRIPTDIR/ptycho_ducky.py"
