@@ -1,5 +1,9 @@
 .ipynb_checkpoints
 *.zip
+# *.npy
 .DS_Store
+dvlp_notebooks
+outputs/
 
-notebooks/runs/vols/
+# GIT ignore .code-workspace
+*.code-workspace
