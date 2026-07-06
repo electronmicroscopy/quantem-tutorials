@@ -142,9 +142,9 @@ For datasets that don't comfortably fit in one GPU's VRAM, or when you want to i
 3. Replicates the object and probe on every GPU.
 4. All-reduces object and probe gradients after each backward pass so all ranks stay in sync.
 
-## Effective batch size with multi-GPU
+## Batch size with multi-GPU
 
-Each rank processes `PTYCHO_BATCH_SIZE` scan positions per step, so the **effective batch size per optimizer step is `PTYCHO_BATCH_SIZE × world_size`**. Reconstructions with `W > 1` are therefore not bit-identical to a single-GPU run at the same `batch_size`. To match single-GPU optimizer dynamics, set `PTYCHO_BATCH_SIZE` to roughly `base_batch // world_size`; you give up some of the speedup but keep the optimizer trajectory comparable. LR scaling (`lr × W`) is sometimes suggested as compensation, but its benefit on these workloads isn't well established — prefer adjusting `batch_size` when in doubt.
+`PTYCHO_BATCH_SIZE` is the **global** batch size: the number of scan positions contributing to one optimizer step across all ranks. quantEM divides it across ranks automatically — each rank processes `PTYCHO_BATCH_SIZE // world_size` positions per step (a warning is emitted when it isn't evenly divisible). Because gradients are averaged over the same global batch, the same `PTYCHO_BATCH_SIZE` reproduces the same optimization trajectory at any world size — no need to divide by the GPU count or rescale the learning rate when scaling up or down.
 
 ## Memory planning
 

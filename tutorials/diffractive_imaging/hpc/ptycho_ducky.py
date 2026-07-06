@@ -51,7 +51,7 @@ def main() -> None:
     input_path = Path(_env("PTYCHO_INPUT", "ducky_dataset.zip"))
     output_path = Path(_env("PTYCHO_OUTPUT", "ducky_result.zip"))
     num_iters = _env("PTYCHO_ITERS", 200, int)
-    batch_size = _env("PTYCHO_BATCH_SIZE", None, int)
+    batch_size = _env("PTYCHO_BATCH_SIZE", None, int)  # global batch; split across ranks
     lr_obj = _env("PTYCHO_LR_OBJ", 5e-2, float)
     lr_probe = _env("PTYCHO_LR_PROBE", 5e-2, float)
     obj_padding_px = _env("PTYCHO_OBJ_PADDING", 32, int)
@@ -65,7 +65,7 @@ def main() -> None:
         print(f"World size : {world_size}")
         print(f"Input      : {input_path}")
         print(f"Output     : {output_path}")
-        print(f"Iterations : {num_iters}  |  batch_size/rank: {batch_size or 'all'}")
+        print(f"Iterations : {num_iters}  |  batch_size (global): {batch_size or 'all'}")
 
     # =================================================================
     # All-in-one path: every rank loads the raw dataset, preprocesses,

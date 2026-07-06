@@ -19,7 +19,7 @@ PTYCHO_OUTPUT=$WORKDIR/ducky_result.zip
 PTYCHO_ITERS=200
 PTYCHO_LR_OBJ=5e-2
 PTYCHO_LR_PROBE=5e-2
-# PTYCHO_BATCH_SIZE=256                       # uncomment to set explicit batch size per rank
+# PTYCHO_BATCH_SIZE=256                       # uncomment to set explicit global batch size (split across ranks)
 
 export MASTER_ADDR=$(scontrol show hostnames "$SLURM_JOB_NODELIST" | head -n 1)
 export MASTER_PORT=29500
