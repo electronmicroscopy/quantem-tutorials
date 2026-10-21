@@ -1,0 +1,7 @@
+synthetic-tilts/
+tilt-series/
+cropped-tilts/
+outputs/
+merged_*
+compact_*
+.venv/
