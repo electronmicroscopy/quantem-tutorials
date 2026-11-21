@@ -1,0 +1,14 @@
+name: maped-mps
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - --pre
+      - --index-url https://test.pypi.org/simple/
+      - --extra-index-url https://pypi.org/simple/
+      - quantem.widget[mps]
+      - quantem
+      - pandas
+      - jupyterlab

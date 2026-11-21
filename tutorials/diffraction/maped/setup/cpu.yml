@@ -1,0 +1,10 @@
+name: maped-cpu
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - quantem
+      - pandas
+      - jupyterlab
