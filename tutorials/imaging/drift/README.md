@@ -17,10 +17,14 @@ is downloaded and run.
 
 Each notebook links to the exact public raw-data folder it needs. Download those
 files into the notebook's `data/<dataset>/` directory, then run from top to
-bottom. The notebooks install the reviewed `quantem` `drift-paper` branch and
+bottom. For the gold 4D-STEM notebook, follow its **Install the notebook environment**
+section for Apple silicon (MPS) or Linux (CUDA). It shows outputs from the
+release-candidate builds.
+
+The other notebooks install the reviewed `quantem` `drift-paper` branch and
 the latest pre-release of `quantem.widget` from TestPyPI.
 
-The notebooks default to `INTERACTIVE = True`. Set it to `False` to use the
+Those notebooks default to `INTERACTIVE = True`. Set it to `False` to use the
 same workflow with static figures. Device selection is automatic across CUDA,
 Apple MPS, and CPU and is shown by `profile()` near the top of each notebook.
 
